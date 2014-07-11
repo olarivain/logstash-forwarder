@@ -23,6 +23,7 @@ type NetworkConfig struct {
 	SSLCA          string   `json:"ssl ca"`
 	Timeout        int64    `json:timeout`
 	timeout        time.Duration
+	SkipVerify	bool	`json:skipVerify`
 }
 
 type FileConfig struct {

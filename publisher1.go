@@ -203,7 +203,7 @@ func connect(config *NetworkConfig) (socket *tls.Conn) {
     }
 
     tlsconfig.ServerName = host
-
+    tlsconfig.InsecureSkipVerify = config.SkipVerify
     socket = tls.Client(tcpsocket, &tlsconfig)
     socket.SetDeadline(time.Now().Add(config.timeout))
     err = socket.Handshake()
