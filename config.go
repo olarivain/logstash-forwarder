@@ -32,8 +32,8 @@ type NetworkConfig struct {
 	SSLKey         string   `json:"ssl key"`
 	SSLCA          string   `json:"ssl ca"`
 	Timeout        int64    `json:timeout`
-	timeout        time.Duration
 	SkipVerify	bool	`json:skipVerify`
+	timeout        time.Duration
 }
 
 type FileConfig struct {
@@ -68,6 +68,7 @@ func DiscoverConfigs(file_or_directory string) (files []string, err error) {
 func MergeConfig(to *Config, from Config) (err error) {
 
 	to.Network.Servers = append(to.Network.Servers, from.Network.Servers...)
+	to.Network.SkipVerify = append(to.Network.SkipVerify, from.Network.SkipVerify...)
 	to.Files = append(to.Files, from.Files...)
 
 	// TODO: Is there a better way to do this in Go?
